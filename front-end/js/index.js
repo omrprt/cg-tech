@@ -25,6 +25,7 @@ const buildUserList = userData => {
     const html = `<li class="collection-header"><h4>${userAlbum.name}'s Albums</h4></li>`;
     $('#album-list').html(html);
     $('#photo-list').html(clearHtml);
+    $('#photo-card').html(clearHtml);
     mainId = parseInt(userId);
 
     $.get(`${URL}/albums`, data => {
@@ -49,8 +50,8 @@ const buildAlbumList = albumData => {
     const userAlbum = albumData[albumId -1];
     const html = `<li class="collection-header"><h4>${userAlbum.title}'s Albums</h4></li>`;
     $('#photo-list').html(html);
+    $('#photo-card').html(clearHtml);
     photoId = parseInt(albumId);
-
     $.get(`${URL}/photos`, data => {
       buildPhotoList(data);
     });
@@ -82,5 +83,9 @@ const buildPhotoList = photoData => {
 
 const onSelectUser = userId => {
   console.log(`Now get user ${userId}'s albums...`);
+
+  $('.reload').click(function() {
+    location.reload();
+  });
 
 };

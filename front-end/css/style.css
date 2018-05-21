@@ -1,3 +1,16 @@
+h1{
+  background: #26a69a;
+  margin: 0 auto;
+  padding:10px;
+  cursor: pointer;
+}
+
+main .container {
+  background: #e0e0e0;
+  padding: 20px;
+  margin-top: 25px;
+}
+
 .card .card-title{
   min-height: 72px;
   font-size: 16px;
