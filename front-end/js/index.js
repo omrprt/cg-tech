@@ -64,12 +64,14 @@ const buildPhotoList = photoData => {
     if( photo.albumId === photoId ) {
       const {url, title} = photo;
       const html = `
-      <div class="col s12 m4" >
+      <div class="col s12 m6 l4" >
         <div class="card">
           <div class="card-image" id="image">
-            <img src="${url}">
-              <span id="card-title">${title}</span>
+            <img src="${url}" alt="album picture">
           </div>
+          <div class="card-title">
+          <p>${title}</p>
+        </div>
         </div>
       </div>`;
       $('#photo-card').append(html);
