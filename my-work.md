@@ -7,3 +7,5 @@
 - changed address name.
 - changed
 - used the reduced function
+- list the Albums
+- list the photos

@@ -1,10 +1,10 @@
-const URL = "http://localhost:3000";
+const URL = 'http://localhost:3000';
 
 let mainId = null;
+let photoId = null;
+const clearHtml = '';
 
 $(document).ready(() => {
-
-
   $.get(`${URL}/users`, data => {
     buildUserList(data);
   });
@@ -24,6 +24,7 @@ const buildUserList = userData => {
     const userAlbum = userData[userId -1];
     const html = `<li class="collection-header"><h4>${userAlbum.name}'s Albums</h4></li>`;
     $('#album-list').html(html);
+    $('#photo-list').html(clearHtml);
     mainId = parseInt(userId);
 
     $.get(`${URL}/albums`, data => {
@@ -31,18 +32,42 @@ const buildUserList = userData => {
     });
     onSelectUser(userId);
   });
-
 };
 
 const buildAlbumList = albumData => {
   console.log('in albums', mainId);
-  albumData.reduce((acc, album) => {
+  albumData.reduce((list, album) => {
     if( album.userId === mainId ) {
       const {id, title} = album;
-      const html = `<a href="#!" album-id=${id} class="collection-item user-list-item">${title}</a>`;
+      const html = `<a href="#!" album-id=${id} class="collection-item album-list-item">${title}</a>`;
       $('#album-list').append(html);
     }
   }, []);
+
+  $('.album-list-item').click(function() {
+    const albumId = $(this).attr('album-id');
+    const userAlbum = albumData[albumId -1];
+    const html = `<li class="collection-header"><h4>${userAlbum.title}'s Albums</h4></li>`;
+    $('#photo-list').html(html);
+    photoId = parseInt(albumId);
+
+    $.get(`${URL}/photos`, data => {
+      buildPhotoList(data);
+    });
+  });
+};
+
+const buildPhotoList = photoData => {
+
+  photoData.reduce((list, photo) => {
+    console.log(photo.albumId);
+    if( photo.albumId === photoId ) {
+      const {id, title} = photo;
+      const html = `<a href="#!" album-id=${id} class="collection-item album-list-item">${title}</a>`;
+      $('#photo-list').append(html);
+    }
+  }, []);
+
 };
 
 const onSelectUser = userId => {
