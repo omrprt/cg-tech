@@ -62,9 +62,17 @@ const buildPhotoList = photoData => {
   photoData.reduce((list, photo) => {
     console.log(photo.albumId);
     if( photo.albumId === photoId ) {
-      const {id, title} = photo;
-      const html = `<a href="#!" album-id=${id} class="collection-item album-list-item">${title}</a>`;
-      $('#photo-list').append(html);
+      const {url, title} = photo;
+      const html = `
+      <div class="col s12 m4" >
+        <div class="card">
+          <div class="card-image" id="image">
+            <img src="${url}">
+              <span id="card-title">${title}</span>
+          </div>
+        </div>
+      </div>`;
+      $('#photo-card').append(html);
     }
   }, []);
 
