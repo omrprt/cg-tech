@@ -40,7 +40,7 @@ const buildAlbumList = albumData => {
   albumData.reduce((list, album) => {
     if( album.userId === mainId ) {
       const {id, title} = album;
-      const html = `<a href="#!" album-id=${id} class="collection-item album-list-item">${title}</a>`;
+      const html = `<a href="#photo-heading" album-id=${id} class="collection-item album-list-item">${title}</a>`;
       $('#album-list').append(html);
     }
   }, []);
@@ -48,7 +48,7 @@ const buildAlbumList = albumData => {
   $('.album-list-item').click(function() {
     const albumId = $(this).attr('album-id');
     const userAlbum = albumData[albumId -1];
-    const html = `<li class="collection-header"><h4>${userAlbum.title}'s Albums</h4></li>`;
+    const html = `<li class="collection-header" id="#photo-heading"><h4>${userAlbum.title}'s Albums</h4></li>`;
     $('#photo-list').html(html);
     $('#photo-card').html(clearHtml);
     photoId = parseInt(albumId);
