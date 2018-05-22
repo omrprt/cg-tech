@@ -12,7 +12,6 @@ $(document).ready(() => {
 });
 
 const buildUserList = userData => {
-  console.log(userData);
   userData.forEach(user => {
     const { id, name} = user;
     const html = `<a href="#!" user-id=${id} class="collection-item user-list-item">${name}</a>`;
@@ -36,7 +35,6 @@ const buildUserList = userData => {
 };
 
 const buildAlbumList = albumData => {
-  console.log('in albums', mainId);
   albumData.reduce((list, album) => {
     if( album.userId === mainId ) {
       const {id, title} = album;
@@ -61,7 +59,6 @@ const buildAlbumList = albumData => {
 const buildPhotoList = photoData => {
 
   photoData.reduce((list, photo) => {
-    console.log(photo.albumId);
     if( photo.albumId === photoId ) {
       const {url, title} = photo;
       const html = `
@@ -83,9 +80,8 @@ const buildPhotoList = photoData => {
 
 const onSelectUser = userId => {
   console.log(`Now get user ${userId}'s albums...`);
-
-  $('.reload').click(function() {
-    location.reload();
-  });
-
 };
+
+$('.reload').click(function() {
+  location.reload();
+});
